@@ -689,4 +689,14 @@ open class KolodaView: UIView, DraggableCardDelegate {
             }
         }
     }
+    
+    public func moveToCard(at index: Int) {
+        guard (0..<countOfCards).contains(index) && currentCardIndex != index else {
+            return
+        }
+        
+        clear()
+        currentCardIndex = index
+        reloadData()
+    }
 }
