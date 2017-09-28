@@ -65,7 +65,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         setup()
     }
     
-    override public var frame: CGRect {
+    @objc override public var frame: CGRect {
         didSet {
             if let ratio = delegate?.card(cardSwipeThresholdRatioMargin: self) , ratio != 0 {
                 swipePercentageMargin = ratio
@@ -190,7 +190,7 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
     }
     
     //MARK: GestureRecognizers
-    func panGestureRecognized(_ gestureRecognizer: UIPanGestureRecognizer) {
+    @objc func panGestureRecognized(_ gestureRecognizer: UIPanGestureRecognizer) {
         dragDistance = gestureRecognizer.translation(in: self)
         
         let touchLocation = gestureRecognizer.location(in: self)
@@ -242,11 +242,11 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         }
     }
     
-    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    @objc public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return delegate?.card(cardShouldDrag: self) ?? true
     }
     
-    func tapRecognized(_ recogznier: UITapGestureRecognizer) {
+    @objc func tapRecognized(_ recogznier: UITapGestureRecognizer) {
         delegate?.card(cardWasTapped: self)
     }
     
